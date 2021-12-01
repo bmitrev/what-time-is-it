@@ -36,6 +36,8 @@ jobs:
         git add -A
         git commit -m "Testing commit"
         git push --set-upstream origin buxActions-$GITHUB_RUN_NUMBER
+        
+        curl -X POST -u $USERNAME:$GITOPS_TOKEN -H \"Accept: application/vnd.github.v3+json\" https://api.github.com/repos/bmitrev/what-time-is-it/pulls -d '{\"head\":\"'${GITHUB_RUN_NUMBER}'\",\"base\":\"main\",\"title\":\"Pull request from codebuild number '${GITHUB_RUN_NUMBER}'\",\"body\":\"Changing image tag to'${GITHUB_RUN_NUMBER}'\"}'
 
   
     
