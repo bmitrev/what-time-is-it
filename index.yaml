@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  what-time-is-it:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2021-12-01T13:09:33.0951364+01:00"
+    description: A Helm chart for Kubernetes
+    digest: de82b0a2da2a6551ace96bef8ea04fead137186799b095cc1547225662e27815
+    name: what-time-is-it
+    type: application
+    urls:
+    - https://bmitrev.github.io/what-time-is-it/what-time-is-it-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-12-01T13:09:33.0946514+01:00"
