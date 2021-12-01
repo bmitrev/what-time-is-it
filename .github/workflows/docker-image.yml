@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ develop ]
 
 jobs:
 
@@ -30,8 +30,7 @@ jobs:
         git config --global user.email "blazhe.mitrev@gmail.com"
         git config --global user.name "bmitrev"
         cd chart
-        git checkout buxActions-$GITHUB_RUN_NUMBER
-        git pull origin master
+        git checkout -b buxActions-$GITHUB_RUN_NUMBER
         sed -i "s/tag: .*$/tag: \"$GITHUB_RUN_NUMBER\"/g" values.yaml 
         cd ../
         git add -A
