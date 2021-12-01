@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ develop ]
 
 jobs:
 
@@ -30,13 +30,13 @@ jobs:
         git config --global user.email "blazhe.mitrev@gmail.com"
         git config --global user.name "bmitrev"
         cd chart
-        git checkout -b buxActions
-        git pull origin master
-        sed -i "s/tag: .*$/tag: $GITHUB_RUN_NUMBER/g" values.yaml 
+        git checkout -b buxActions-$GITHUB_RUN_NUMBER
+        sed -i "s/tag: .*$/tag: \"$GITHUB_RUN_NUMBER\"/g" values.yaml 
         cd ../
         git add -A
         git commit -m "Testing commit"
-        git push --set-upstream origin buxActions
-
+        git push --set-upstream origin buxActions-$GITHUB_RUN_NUMBER
+        
+        curl -X POST -u $USERNAME:$GITOPS_TOKEN -H \"Accept: application/vnd.github.v3+json\" https://api.github.com/repos/bmitrev/what-time-is-it/pulls -d '{\"head\":\"buxActions-'${GITHUB_RUN_NUMBER}'\",\"base\":\"master\",\"title\":\"Pull request from codebuild number '${GITHUB_RUN_NUMBER}'\",\"body\":\"Changing image tag to '${GITHUB_RUN_NUMBER}'\"}'
   
     
