@@ -30,6 +30,7 @@ jobs:
         git config --global user.email "blazhe.mitrev@gmail.com"
         git config --global user.name "bmitrev"
         cd chart
+        git config pull.rebase true
         git fetch
         git merge origin/master
         git checkout buxActions
