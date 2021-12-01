@@ -31,7 +31,7 @@ jobs:
         git config --global user.name "bmitrev"
         cd chart
         git checkout -b buxActions-$GITHUB_RUN_NUMBER
-        sed -i "s/tag: .*$/tag: $GITHUB_RUN_NUMBER/g" values.yaml 
+        sed -i "s/tag: .*$/tag: \"$GITHUB_RUN_NUMBER\"/g" values.yaml 
         cd ../
         git add -A
         git commit -m "Testing commit"
