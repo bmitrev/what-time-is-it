@@ -30,16 +30,13 @@ jobs:
         git config --global user.email "blazhe.mitrev@gmail.com"
         git config --global user.name "bmitrev"
         cd chart
-        git config pull.rebase true
-        git fetch
-        git merge origin/master
-        git checkout buxActions
+        git checkout buxActions-$GITHUB_RUN_NUMBER
         git pull origin master
-        sed -i "s/tag: .*$/tag: $GITHUB_RUN_NUMBER/g" values.yaml 
+        sed -i "s/tag: .*$/tag: \"$GITHUB_RUN_NUMBER\"/g" values.yaml 
         cd ../
         git add -A
         git commit -m "Testing commit"
-        git push --set-upstream origin buxActions
+        git push --set-upstream origin buxActions-$GITHUB_RUN_NUMBER
 
   
     
